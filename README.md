@@ -30,8 +30,9 @@ go get ./...  # Replace this with your specific installation steps if different
 ## Usage
 
 To run the quote generator:
-
+```bash
 go run main.go
+```
 
 Upon executing the above command, a random inspirational quote will be printed to the console.
 
