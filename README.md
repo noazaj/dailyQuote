@@ -6,6 +6,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Upcoming Features](#upcoming-features)
+- [Contributing](#contributing)
 - [License](#license)
 
 ## Installation
@@ -14,20 +15,23 @@
 
 ```bash
 git clone https://github.com/your-github-username/dailyQuote.git
+```
 
 2. Navigate to the project directory:
 
-    cd dailyQuote
+```bash
+cd dailyQuote
+```
 
 3. Install the necessary dependencies (if there are any):
 
-    go get ./...  # Replace this with your specific installation steps if different
+go get ./...  # Replace this with your specific installation steps if different
 
 ## Usage
 
 To run the quote generator:
 
-    go run main.go
+go run main.go
 
 Upon executing the above command, a random inspirational quote will be printed to the console.
 
