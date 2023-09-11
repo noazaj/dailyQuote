@@ -2,7 +2,6 @@ package bot
 
 import (
 	"log"
-	"os"
 
 	"github.com/joho/godotenv"
 	"github.com/zajicekn/dailyQuote/quote"
@@ -16,8 +15,6 @@ func Bot() string {
 	// Load the .env variables
 	err := godotenv.Load(".env")
 	if err != nil {
-		cwd, _ := os.Getwd()
-		log.Println("Current working directory:", cwd)
 		log.Fatal("Error in loading .env file: ", err)
 	}
 
