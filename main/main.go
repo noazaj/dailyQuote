@@ -2,11 +2,16 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/zajicekn/dailyQuote/bot"
 )
 
 func main() {
-	resp := bot.Bot()
-	fmt.Println(resp)
+	message, err := bot.Bot()
+	if err != nil {
+		log.Fatalf("Failed to send message: %v", err)
+	}
+
+	fmt.Println(message)
 }

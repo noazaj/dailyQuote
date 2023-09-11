@@ -1,24 +1,57 @@
 package bot
 
 import (
-	"log"
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"os"
 
 	"github.com/joho/godotenv"
 	"github.com/zajicekn/dailyQuote/quote"
 )
 
-func Bot() string {
-	// This variable will hold the Quote and
-	// Author from the quote package
-	quoteMessage := quote.Quote()
+type message struct {
+	Chat_id string `json:"chat_id"`
+	Text    string `json:"text"`
+}
 
-	// Load the .env variables
-	err := godotenv.Load(".env")
+func Bot() (string, error) {
+	textMessageQuote := quote.Quote()
+
+	// Create the message entity from the message struct. This will include
+	// the ID of the chatbot and the text that will be sent (quote & author)
+	messageJson, err := json.Marshal(message{Chat_id: "@ZenQuoteBot", Text: textMessageQuote})
 	if err != nil {
-		log.Fatal("Error in loading .env file: ", err)
+		return "", fmt.Errorf("error marshalling the JSON data: %v", err)
 	}
 
-	// Soon to implement API token
+	token := os.Getenv("API_KEY")
+	if token == "" {
+		return "", fmt.Errorf("API_KEY not found in environment variables")
+	}
 
-	return quoteMessage
+	methodName := "sendMessage"
+	url := fmt.Sprintf("https://api.telegram.org/bot%v/%v", token, methodName)
+
+	resp, err := http.Post(url, "application/json", bytes.NewReader(messageJson))
+	if err != nil {
+		return "", fmt.Errorf("error in posting message: %v", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != 200 {
+		body, _ := io.ReadAll(resp.Body)
+		return "", fmt.Errorf("request failed with status code: %d, response: %s", resp.StatusCode, body)
+	}
+
+	return "Message sent successfully!", nil
+}
+
+func init() {
+	// Load the .env variables once during package initialization
+	if err := godotenv.Load(".env"); err != nil {
+		fmt.Errorf("error loading .env file: %v", err)
+	}
 }
