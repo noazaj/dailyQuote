@@ -1,2 +1,23 @@
-# Ignore values in enviornment file
+# Enviornment variables
 .env
+
+# Compiled binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Folders
+bin/
+pkg/
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# OS-specific
+.DS_Store
+desktop.ini
+.vscode/
