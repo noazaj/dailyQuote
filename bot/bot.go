@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"os"
 
@@ -52,6 +53,6 @@ func Bot() (string, error) {
 func init() {
 	// Load the .env variables once during package initialization
 	if err := godotenv.Load(".env"); err != nil {
-		fmt.Errorf("error loading .env file: %v", err)
+		log.Fatalf("Error loading .env file: %v", err)
 	}
 }
