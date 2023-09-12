@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"time"
 )
 
 // Create a struct to hold the JSON data from the API request. The tags
@@ -47,8 +48,9 @@ func Quote() string {
 	}
 
 	message := ""
+	now := time.Now()
 	for _, quote := range quoteJson {
-		message += fmt.Sprintf("Quote: %s\n\nAuthor: %s\n", quote.Quote, quote.Author)
+		message += fmt.Sprintf("%v\n\nQuote:\n%s\n\nAuthor:\n%s\n", now.Format("Monday, 02 January 2006"), quote.Quote, quote.Author)
 	}
 	return message
 }
