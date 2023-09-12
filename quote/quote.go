@@ -48,7 +48,7 @@ func Quote() string {
 
 	message := ""
 	for _, quote := range quoteJson {
-		message += fmt.Sprintf("Quote: %s\nAuthor: %s\n", quote.Quote, quote.Author)
+		message += fmt.Sprintf("Quote: %s\n\nAuthor: %s\n", quote.Quote, quote.Author)
 	}
 	return message
 }

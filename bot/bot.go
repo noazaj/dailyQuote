@@ -23,7 +23,8 @@ func Bot() (string, error) {
 
 	// Create the message entity from the message struct. This will include
 	// the ID of the chatbot and the text that will be sent (quote & author)
-	messageJson, err := json.Marshal(message{Chat_id: "@ZenQuoteBot", Text: textMessageQuote})
+	CHAT_ID := os.Getenv("CHAT_ID")
+	messageJson, err := json.Marshal(message{Chat_id: CHAT_ID, Text: textMessageQuote})
 	if err != nil {
 		return "", fmt.Errorf("error marshalling the JSON data: %v", err)
 	}
