@@ -23,9 +23,13 @@ git clone https://github.com/your-github-username/dailyQuote.git
 cd dailyQuote
 ```
 
-3. Install the necessary dependencies (if there are any):
+3. Install the necessary dependencies:
+require github.com/joho/godotenv v1.5.1
 
-go get ./...  # Replace this with your specific installation steps if different
+go get ./...
+```bash
+go get github.com/joho/godotenv
+```
 
 ## Usage
 
@@ -34,13 +38,20 @@ To run the quote generator:
 go run main.go
 ```
 
-Upon executing the above command, a random inspirational quote will be printed to the console.
+Upon executing the above command, either a successful message or error will be printed to the screen.
+
+## Messaging System
+
+I have integrated with Telegram to provide the messaging functionality. After setting up a bot, the program can now relay messages to the Telegram app. This feature is currently in beta and only supports Telegram, but I'm looking into expanding this capability for other messaging platforms in the future. 
+
+Plans are in place to host the application on a cloud server to ensure uninterrupted service. We're also keen on adding a feedback system where users can indicate whether they liked the provided quote or not.
 
 ## Upcoming Features
 
-- **Messaging System**: We're currently in the process of developing a messaging system. Soon, users will be able to receive daily quotes directly on their preferred platforms.
-
-- **Additional Customizations**: We're exploring ways to allow users to customize their daily quotes experience further.
+- **Scalability**: I'm researching ways to scale the Telegram bot feature so that other users can easily use the bot and receive messages.
+- **Cloud Hosting**: The plan is to host the application on a cloud server to ensure it runs continuously.
+- **User Feedback**: I'm considering introducing a feature that allows users to give feedback on the quotes they receive.
+- **Additional Customizations**: I'm exploring avenues to let users personalize their daily quotes experience further.
 
 ## Contributing
 
